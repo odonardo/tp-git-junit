@@ -24,15 +24,14 @@ pipeline {
             }
         }
         
-        // --- CORRECTION ICI : ajout de "env." devant SONAR_TOKEN ---
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarLocal') { 
-                    at "mvn sonar:sonar -Dsonar.login=%SONAR_TOKEN%"
+                    // CORRECTION FINALE : Utilisation de %SONAR_TOKEN% pour Windows
+                    bat "mvn sonar:sonar -Dsonar.login=%SONAR_TOKEN%"
                 }
             }
         }
-        // -----------------------------------------------------
         
         stage('Package') {
             steps {
