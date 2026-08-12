@@ -24,6 +24,16 @@ pipeline {
             }
         }
         
+        // --- C'EST ICI LA NOUVELLE ÉTAPE QUE VOUS AJOUTEZ ---
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarLocal') { 
+                    bat 'mvn sonar:sonar'
+                }
+            }
+        }
+        // -----------------------------------------------------
+        
         stage('Package') {
             steps {
                 bat 'mvn package'
