@@ -24,11 +24,11 @@ pipeline {
             }
         }
         
-        // --- C'EST ICI LA NOUVELLE ÉTAPE QUE VOUS AJOUTEZ ---
+        // --- CORRECTION ICI : ajout de "env." devant SONAR_TOKEN ---
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarLocal') { 
-                    bat "mvn sonar:sonar -Dsonar.login=${SONAR_TOKEN}"
+                    bat "mvn sonar:sonar -Dsonar.login=${env.SONAR_TOKEN}"
                 }
             }
         }
