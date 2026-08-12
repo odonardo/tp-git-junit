@@ -15,7 +15,7 @@ pipeline {
         
         stage('Compilation & Tests') {
             steps {
-                sh 'mvn clean test'
+                bat 'mvn clean test'
             }
             post {
                 always {
