@@ -27,8 +27,11 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarLocal') { 
-                    // CORRECTION FINALE : Utilisation de %SONAR_TOKEN% pour Windows
-                    bat "mvn sonar:sonar -Dsonar.login=%SONAR_TOKEN% -Dsonar.host.url=http://localhost:9000"
+                    // 1. Vérification du token (débogage)
+                    bat 'echo Le token SonarQube est : %SONAR_TOKEN%'
+                    
+                    // 2. Analyse réelle (Utilisation de guillemets simples pour le terminal Windows)
+                    bat 'mvn sonar:sonar -Dsonar.login=%SONAR_TOKEN% -Dsonar.host.url=http://localhost:9000'
                 }
             }
         }
